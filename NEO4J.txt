@@ -1,0 +1,29 @@
+MATCH (a:PersonalDetails),(b:employee)
+WHERE a.ReferenceID = b.ReferenceID
+CREATE (b)-[r:Details_of]->(a)
+RETURN type(r)
+
+MATCH (a:Works),(b:Flight)
+WHERE a.Flightno = b.Flightno
+CREATE (a)-[r:Works_on]->(b)
+RETURN type(r)
+
+MATCH (a:Works),(b:employee)
+WHERE a.employeeid = b.employeeid
+CREATE (a)-[r:Belongs_to]->(b)
+RETURN type(r)
+
+MATCH (a:Flight),(b:Reservation)
+WHERE a.Flightno = b.Flightno
+CREATE (a)-[r:Travels_on]->(b)
+RETURN type(r)
+
+MATCH (a:PersonalDetails),(b:Reservation)
+WHERE a.ReferenceID = b.RefrenceID
+CREATE (b)-[r:Reservation_of]->(a)
+RETURN type(r)
+
+MATCH(a:Reservation),(b:Payment)
+WHERE a.PaymentID = b.PaymentID
+CREATE (a)-[r:PaymentDetails]->(b)
+RETURN type(r)
